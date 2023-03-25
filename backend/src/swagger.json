@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Documentação da API mktsend",
-        "description": "Documentação da API mktsend",
+        "title": "Documentação da API ValeZAP",
+        "description": "Documentação da API ValeZAP",
         "contact": {
             "whatsapp": "https://wa.me/5517991565280"
         },
@@ -11,7 +11,7 @@
     "servers": [
         {
             "url": "https://localhost/8080",
-            "description": "API mktsend"
+            "description": "API ValeZAP"
         }
     ],
     "paths": {

@@ -2,41 +2,41 @@
 
 ### 20/03/2023
 
-[Liberação de API para busca de setores](https://github.com/FilipeCamillo/Press-Ticket/commit/69b1ecd5af03f790397a650f48bedcf56c0e8d98)
+[Liberação de API para busca de setores](https://github.com/JobasFernandes/Press-Ticket/commit/69b1ecd5af03f790397a650f48bedcf56c0e8d98)
 
-[Liberação de pagina do Swagger](https://github.com/FilipeCamillo/Press-Ticket/commit/69b1ecd5af03f790397a650f48bedcf56c0e8d98)
+[Liberação de pagina do Swagger](https://github.com/JobasFernandes/Press-Ticket/commit/69b1ecd5af03f790397a650f48bedcf56c0e8d98)
 
 ### 20/03/2023
-[Atualização de versão 1.4.3](https://github.com/FilipeCamillo/Press-Ticket/commit/efe167007075c56df695e0c567d4287ea2d7a70a)
+[Atualização de versão 1.4.3](https://github.com/JobasFernandes/Press-Ticket/commit/efe167007075c56df695e0c567d4287ea2d7a70a)
 
-[Reconhecimento de mensagem apagada pelo cliente](https://github.com/FilipeCamillo/Press-Ticket/commit/56b5dc905f6dc03be6cd5878100a7a63e80077d3)
+[Reconhecimento de mensagem apagada pelo cliente](https://github.com/JobasFernandes/Press-Ticket/commit/56b5dc905f6dc03be6cd5878100a7a63e80077d3)
 
-[Adição de envio de ID de tags pela API](https://github.com/FilipeCamillo/Press-Ticket/commit/56b5dc905f6dc03be6cd5878100a7a63e80077d3)
+[Adição de envio de ID de tags pela API](https://github.com/JobasFernandes/Press-Ticket/commit/56b5dc905f6dc03be6cd5878100a7a63e80077d3)
 
-[Adição de envio de ID do usuário pela API](https://github.com/FilipeCamillo/Press-Ticket/commit/56b5dc905f6dc03be6cd5878100a7a63e80077d3)
+[Adição de envio de ID do usuário pela API](https://github.com/JobasFernandes/Press-Ticket/commit/56b5dc905f6dc03be6cd5878100a7a63e80077d3)
 
-[Atualização de layout da pagina de login](https://github.com/FilipeCamillo/Press-Ticket/commit/56b5dc905f6dc03be6cd5878100a7a63e80077d3)
+[Atualização de layout da pagina de login](https://github.com/JobasFernandes/Press-Ticket/commit/56b5dc905f6dc03be6cd5878100a7a63e80077d3)
 
-[Atualização de "pino": "^7.8.0", para "pino": "^8.11.0",](https://github.com/FilipeCamillo/Press-Ticket/commit/56b5dc905f6dc03be6cd5878100a7a63e80077d3)
+[Atualização de "pino": "^7.8.0", para "pino": "^8.11.0",](https://github.com/JobasFernandes/Press-Ticket/commit/56b5dc905f6dc03be6cd5878100a7a63e80077d3)
 
-[Atualização de "pino-pretty": "^9.1.1", para "pino-pretty": "^10.0.0",](https://github.com/FilipeCamillo/Press-Ticket/commit/56b5dc905f6dc03be6cd5878100a7a63e80077d3)
+[Atualização de "pino-pretty": "^9.1.1", para "pino-pretty": "^10.0.0",](https://github.com/JobasFernandes/Press-Ticket/commit/56b5dc905f6dc03be6cd5878100a7a63e80077d3)
 
-[Atualização de logger.ts](https://github.com/FilipeCamillo/Press-Ticket/commit/56b5dc905f6dc03be6cd5878100a7a63e80077d3)
+[Atualização de logger.ts](https://github.com/JobasFernandes/Press-Ticket/commit/56b5dc905f6dc03be6cd5878100a7a63e80077d3)
 ### 18/03/2023
-[Adicionando opção de enviar o ID do setor pela API](https://github.com/FilipeCamillo/Press-Ticket/commit/aba49e56f4e9bb34a0cdd55f5e8074fb3080663a)
+[Adicionando opção de enviar o ID do setor pela API](https://github.com/JobasFernandes/Press-Ticket/commit/aba49e56f4e9bb34a0cdd55f5e8074fb3080663a)
 
-[Melhorando e a pagina da API, e adicionando opções de traduções](https://github.com/FilipeCamillo/Press-Ticket/commit/aba49e56f4e9bb34a0cdd55f5e8074fb3080663a)
+[Melhorando e a pagina da API, e adicionando opções de traduções](https://github.com/JobasFernandes/Press-Ticket/commit/aba49e56f4e9bb34a0cdd55f5e8074fb3080663a)
 
-[Melhorando função de envio de mensagem fora do horário comerical com dias da semana](https://github.com/FilipeCamillo/Press-Ticket/commit/aba49e56f4e9bb34a0cdd55f5e8074fb3080663a)
+[Melhorando função de envio de mensagem fora do horário comerical com dias da semana](https://github.com/JobasFernandes/Press-Ticket/commit/aba49e56f4e9bb34a0cdd55f5e8074fb3080663a)
 
 ### 16/03/2023
-[Adicionando cor na divisão do historico para os chamado.](https://github.com/FilipeCamillo/Press-Ticket/commit/c9d634a7f18b2e1c205407a61fd1334a0beb50e4)
+[Adicionando cor na divisão do historico para os chamado.](https://github.com/JobasFernandes/Press-Ticket/commit/c9d634a7f18b2e1c205407a61fd1334a0beb50e4)
 
-[Correção no horario comercial com dias da semana por conexão.](https://github.com/FilipeCamillo/Press-Ticket/commit/e5df8d615ddbcf6db40b662250d24422bdc58cc0)
+[Correção no horario comercial com dias da semana por conexão.](https://github.com/JobasFernandes/Press-Ticket/commit/e5df8d615ddbcf6db40b662250d24422bdc58cc0)
 
-[Atualização - hoario comercial com dias da semana para conexões.](https://github.com/FilipeCamillo/Press-Ticket/commit/b762238b161fc87acaa2d5f7f3da551e0698cf6e#diff-4192be3f2b53ac75a8cac1e87e1e70a8d55e7d99e085dbd84d53a6ab1535e83d)
+[Atualização - hoario comercial com dias da semana para conexões.](https://github.com/JobasFernandes/Press-Ticket/commit/b762238b161fc87acaa2d5f7f3da551e0698cf6e#diff-4192be3f2b53ac75a8cac1e87e1e70a8d55e7d99e085dbd84d53a6ab1535e83d)
 
-[Atualização - Retirada do botão visualizar, ao clicar no chamado pendente é possivel já visualizar a conversa.](https://github.com/FilipeCamillo/Press-Ticket/commit/b762238b161fc87acaa2d5f7f3da551e0698cf6e#diff-4192be3f2b53ac75a8cac1e87e1e70a8d55e7d99e085dbd84d53a6ab1535e83d)
+[Atualização - Retirada do botão visualizar, ao clicar no chamado pendente é possivel já visualizar a conversa.](https://github.com/JobasFernandes/Press-Ticket/commit/b762238b161fc87acaa2d5f7f3da551e0698cf6e#diff-4192be3f2b53ac75a8cac1e87e1e70a8d55e7d99e085dbd84d53a6ab1535e83d)
 
 ### 08/02/2023
 
@@ -67,7 +67,7 @@
 <<<<<<< HEAD
 ### 23/12/2022
 
-- [Update in view of all ticket for all users](https://github.com/FilipeCamillo/Press-Ticket/commit/708977b71d0a6d430e522910cd4e836519e1a70a)
+- [Update in view of all ticket for all users](https://github.com/JobasFernandes/Press-Ticket/commit/708977b71d0a6d430e522910cd4e836519e1a70a)
 =======
 ### 24/12/2022
 

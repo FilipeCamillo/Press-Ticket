@@ -13,7 +13,7 @@ CREATE DATABASE pressticket CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 2. Clonar o repositório
 
 ```bash
-git clone https://github.com/rtenorioh/Press-Ticket.git Press-Ticket
+git clone https://github.com/JobasFernandes/Press-Ticket.git Press-Ticket
 ```
 
 3. Entrar no diretório backend do Press-Ticket
@@ -35,7 +35,8 @@ PROXY_PORT=8080
 CHROME_BIN=C:\Program Files\Google\Chrome\Application\chrome.exe  
 
 DB_DIALECT=mysql  
-DB_HOST=localhost  
+DB_HOST=localhost
+DB_PORT=3306
 DB_TIMEZONE=-03:00  
 DB_USER=root  
 DB_PASS=  
@@ -121,7 +122,7 @@ set NODE_OPTIONS=--openssl-legancy-provider
 
 * User: 
 ```bash
-admin@mkthub.tech
+admin@valezap.app
 ```
 * Password: 
 ```bash

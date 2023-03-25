@@ -113,7 +113,7 @@ const TicketsManager = () => {
   const [showAllTickets, setShowAllTickets] = useState(false);
   const { user } = useContext(AuthContext);
 
-  const [openCount, setOpenCount] = useState(0);
+  const [, setOpenCount] = useState(0);
   const [pendingCount, setPendingCount] = useState(0);
   const [selectedTags, setSelectedTags] = useState([]);
 
@@ -183,15 +183,7 @@ const TicketsManager = () => {
           <Tab
             value={"open"}
             icon={<MoveToInbox />}
-            label={
-                <Badge
-                className={classes.badge}
-                badgeContent={openCount}
-                 color="secondary"
-                >
-               {i18n.t("tickets.tabs.open.title")}
-                </Badge>
-                }
+            label={i18n.t("tickets.tabs.open.title")}
             classes={{ root: classes.tab }}
           />
           <Tab
@@ -264,7 +256,6 @@ const TicketsManager = () => {
           />
           <TicketsList
             status="pending"
-            selectedQueueIds={selectedQueueIds}
             updateCount={(val) => setPendingCount(val)}
             style={applyPanelStyle("pending")}
           />
@@ -277,7 +268,6 @@ const TicketsManager = () => {
           status="pending"
           showAll={true}
           selectedQueueIds={selectedQueueIds}
-          updateCount={(val) => setPendingCount(val)}
         />
       </TabPanel>
 

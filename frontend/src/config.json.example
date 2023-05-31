@@ -1,15 +1,15 @@
 {
     "system": {
-        "name": "Mktsend",
-        "url": "https://mkthub.com.br",
+        "name": "TOGI Talk",
+        "url": "https://togiti.com.br",
         "color": {
             "lightTheme": {
                 "palette": {
-                    "primary": "#F04405",
+                    "primary": "#225D93",
                     "secondary": "#0D0D0D"
                 },
                 "toolbar": {
-                    "background": "linear-gradient(to right, #F04405, #F04405)"
+                    "background": "linear-gradient(to right, #225D93, #225D93)"
                 },
                 "menuItens": "#ffffff",
                 "sub": "#ffffff",
@@ -18,8 +18,8 @@
             },
             "darkTheme": {
                 "palette": {
-                    "primary": "#F04405",
-                    "secondary": "#ff9100",
+                    "primary": "#225D93",
+                    "secondary": "#1375d0",
                     "background": {
                         "default": "#080d14",
                         "paper": "#181d22"
@@ -30,11 +30,11 @@
                     }
                 },
                 "toolbar": {
-                    "background": "linear-gradient(to right, #F04405, #F04405)"
+                    "background": "linear-gradient(to right, #225D93, #225D93)"
                 },
                 "menuItens": "#181d22",
                 "sub": "#181d22",
-                "toolbarIcon": "#F04405",
+                "toolbarIcon": "#225D93",
                 "divide": "#080d14"
             }
         }

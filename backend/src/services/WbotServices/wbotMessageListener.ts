@@ -18,7 +18,6 @@ import Contact from "../../models/Contact";
 import Ticket from "../../models/Ticket";
 import Message from "../../models/Message";
 import Settings from "../../models/Setting";
-import Whatsapp from "../../models/Whatsapp";
 
 import { getIO } from "../../libs/socket";
 import CreateMessageService from "../MessageServices/CreateMessageService";
@@ -37,9 +36,6 @@ import UserRating from "../../models/UserRating";
 import TicketTraking from "../../models/TicketTraking";
 import SendWhatsAppMessage from "./SendWhatsAppMessage";
 import FindOrCreateATicketTrakingService from "../TicketServices/FindOrCreateATicketTrakingService";
-import Queue from "../../models/Queue";
-import { boolean } from "yup";
-import ShowTicketService from "../TicketServices/ShowTicketService";
 
 interface Session extends Client {
   id?: number;

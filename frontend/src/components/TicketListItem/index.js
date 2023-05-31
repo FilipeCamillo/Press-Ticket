@@ -144,7 +144,7 @@ const useStyles = makeStyles(theme => ({
 const TicketListItem = ({ ticket }) => {
 	const classes = useStyles();
 	const history = useHistory();
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState("false");
 	const { ticketId } = useParams();
 	const isMounted = useRef(true);
 	const { user } = useContext(AuthContext);
@@ -200,18 +200,18 @@ const TicketListItem = ({ ticket }) => {
 	}
 
 	const handleAcepptTicket = async id => {
-		setLoading(true);
+		setLoading("true");
 		try {
 			await api.put(`/tickets/${id}`, {
 				status: "open",
 				userId: user?.id,
 			});
 		} catch (err) {
-			setLoading(false);
+			setLoading("false");
 			toastError(err);
 		}
 		if (isMounted.current) {
-			setLoading(false);
+			setLoading("false");
 		}
 		history.push(`/tickets/${id}`);
 	}; const queueName = selectedTicket => {
@@ -233,51 +233,51 @@ const TicketListItem = ({ ticket }) => {
 	};
 
 	const handleReopenTicket = async id => {
-		setLoading(true);
+		setLoading("true");
 		try {
 			await api.put(`/tickets/${id}`, {
 				status: "open",
 				userId: user?.id,
 			});
 		} catch (err) {
-			setLoading(false);
+			setLoading("false");
 			toastError(err);
 		}
 		if (isMounted.current) {
-			setLoading(false);
+			setLoading("false");
 		}
 		history.push(`/tickets/${id}`);
 	};
 
 	const handleViewTicket = async id => {
-		setLoading(true);
+		setLoading("true");
 		try {
 			await api.put(`/tickets/${id}`, {
 				status: "pending",
 			});
 		} catch (err) {
-			setLoading(false);
+			setLoading("false");
 			toastError(err);
 		}
 		if (isMounted.current) {
-			setLoading(false);
+			setLoading("false");
 		}
 		history.push(`/tickets/${id}`);
 	};
 
 	const handleClosedTicket = async id => {
-		setLoading(true);
+		setLoading("true");
 		try {
 			await api.put(`/tickets/${id}`, {
 				status: "closed",
 				userId: user?.id,
 			});
 		} catch (err) {
-			setLoading(false);
+			setLoading("false");
 			toastError(err);
 		}
 		if (isMounted.current) {
-			setLoading(false);
+			setLoading("false");
 		}
 		history.push(`/tickets/${id}`);
 	};

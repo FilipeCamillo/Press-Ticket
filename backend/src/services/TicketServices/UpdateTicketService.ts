@@ -60,7 +60,14 @@ const UpdateTicketService = async ({
         await CheckContactOpenTickets(ticket.contact.id, ticket.whatsappId);
       }
 
-      if (status !== undefined && ["closed"].indexOf(status) > -1 && !isFinished) {
+      if (status !== undefined && ["closed"].indexOf(status) > -1 && !isFinished && isMsgGroup) {
+        await ticketTraking.update({
+          closedAt: moment().toDate(),
+          finishedAt: moment().toDate()
+        });
+      }
+
+      if (status !== undefined && ["closed"].indexOf(status) > -1 && !isFinished && !isMsgGroup) {
         const { ratingMessage } = await ShowWhatsAppService(
           ticket.whatsappId
         );
@@ -99,6 +106,7 @@ const UpdateTicketService = async ({
       });
     }
 
+    if (isMsgGroup) 
     await ticket.update({
       status,
       queueId,

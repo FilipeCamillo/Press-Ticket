@@ -31,14 +31,14 @@ export default async function DashboardDataService(
       (tt.finishedAt is not null) finished,
       (tt.userId is null and tt.finishedAt is null) pending,
       coalesce((
-        (day( DATEDIFF(coalesce(tt.ratingAt, tt.finishedAt) , tt.startedAt)) * 24 * 60) +
-        (HOUR(DATEDIFF(coalesce(tt.ratingAt, tt.finishedAt), tt.startedAt)) * 60) +
-        (MINUTE(DATEDIFF(coalesce(tt.ratingAt, tt.finishedAt), tt.startedAt)))
+        (TIMESTAMPDIFF(day, tt.startedAt,coalesce(tt.ratingAt, tt.finishedAt) ) * 24 * 60) +
+        (TIMESTAMPDIFF(HOUR, tt.startedAt,coalesce(tt.ratingAt, tt.finishedAt)) * 60) +
+        (TIMESTAMPDIFF(MINUTE, tt.startedAt,coalesce(tt.ratingAt, tt.finishedAt)))
       ), 0) supportTime,
       coalesce((
-        (day(DATEDIFF(tt.startedAt, tt.queuedAt)) * 24 * 60) +
-        (HOUR(DATEDIFF (tt.startedAt, tt.queuedAt)) * 60) +
-        (MINUTE(DATEDIFF(tt.startedAt, tt.queuedAt)))
+        (TIMESTAMPDIFF(DAY, tt.queuedAt,tt.startedAt) * 24 * 60) +
+        (TIMESTAMPDIFF (HOUR, tt.queuedAt,tt.startedAt) * 60) +
+        (TIMESTAMPDIFF(MINUTE, tt.queuedAt,tt.startedAt))
       ), 0) waitTime,
       t.status,
       tt.*,
@@ -147,50 +147,37 @@ export default async function DashboardDataService(
         ) npsScore
   ),
   attedants as (
-    select
-      u.id,
-      u.name,
-      coalesce(att.avgSupportTime, 0) avgSupportTime,
-      att.tickets,
-      att.rating,
-      att.online
-    from Users u
-    inner join (
       select
         u1.id,
         u1.name,
         u1.online,
         avg(t.supportTime) avgSupportTime,
         count(t.id) tickets,
-        coalesce(avg(ur.rate), 0) rating
+        coalesce(avg(ur.rate), 0) rating,
+        coalesce(count(ur.id), 0) countRating
       from Users u1
       left join traking t on t.userId = u1.id
-      left join UserRatings ur on ur.userId = t.userId and DATE(ur.createdAt) = DATE(t.finishedAt)
+      left join UserRatings ur on ur.userId = t.userId and ur.ticketId = t.ticketId 
       group by 1, 2
-    ) att on att.id = u.id
-    order by att.name
+    order by u1.name
   )   
   select (select JSON_OBJECT('leads', leads, 'npsScore', npsScore, 'avgWaitTime',avgWaitTime, 'avgSupportTime', avgSupportTime, 'npsPassivePerc', npsPassivePerc, 'supportPending', supportPending, 'npsPassiveCount', npsPassiveCount, 'supportFinished', supportFinished, 'npsPromotersPerc', npsPromotersPerc, 'supportHappening', supportHappening, 'npsDetractorsPerc', npsDetractorsPerc, 'npsPromotersCount', npsPromotersCount, 'npsDetractorsCount', npsDetractorsCount)  counters from counters  ) counters    
     ,
-   (select JSON_ARRAY(JSON_OBJECT('id', id,'name', name, 'online', online, 'avgSupportTime', avgSupportTime, 'tickets', tickets, 'rating', rating))  attendants  from attedants a) attendants ;
+   (select JSON_ARRAYAGG( JSON_OBJECT('id', id,'name', name, 'online', online, 'avgSupportTime', avgSupportTime, 'tickets', tickets, 'rating', rating, 'countRating', countRating))  attendants  from attedants a) attendants ;
 `;
   
   let where = 'where tt.id is not null';
 const replacements: any[] = [];
 
 if (_.has(params, "days")) {
-  where += ` and tt.queuedAt >= (curdate() - interval ? day)`;
+  where += ` and tt.createdAt >= (curdate() - interval ? day)`;
   replacements.push(parseInt(`${params.days}`.replace(/\D/g, ""), 10));
 }
 
-if (_.has(params, "date_from")) {
-  where += ` and tt.queuedAt >= ?`;
-  replacements.push(`${params.date_from} 00:00:00`);
-}
-
-if (_.has(params, "date_to")) {
-  where += ` and tt.finishedAt <= ?`;
-  replacements.push(`${params.date_to} 23:59:59`);
+if (_.has(params, "date_from") && _.has(params, "date_to")) {
+  where += ` and date(tt.createdAt) between '${params.date_from}' and '${params.date_to}'`;
+  // replacements.push(`${params.date_from}`);
+  // console.log(replacements)
 }
 
 if (_.has(params, "userId")) {
@@ -242,12 +229,14 @@ if (_.has(params, "queueId")) {
 }
   
   const finalQuery = query.replace("-- filterPeriod", where);
-
+  
   const responseData: DashboardData = await sequelize.query(finalQuery, {
     replacements,
     type: QueryTypes.SELECT,
     plain: true
   });
+
+  console.log(responseData)
 
   return responseData;
 }

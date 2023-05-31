@@ -34,6 +34,7 @@ import {
 import MarkdownWrapper from "../MarkdownWrapper";
 import VcardPreview from "../VcardPreview";
 import LocationPreview from "../LocationPreview";
+//  import PDFThumbnail from "../PDFThumbnail";
 import ModalImageCors from "../ModalImageCors";
 import MessageOptionsMenu from "../MessageOptionsMenu";
 import { ReplyMessageContext } from "../../context/ReplyingMessage/ReplyingMessageContext";
@@ -44,6 +45,8 @@ import api from "../../services/api";
 import toastError from "../../errors/toastError";
 import { toast } from "react-toastify";
 import { system } from "../../config.json";
+// import { Viewer } from "@react-pdf-viewer/core";
+//import { PDFViewer, Document, Page } from "@react-pdf/renderer";
 
 const useStyles = makeStyles((theme) => ({
   messagesListWrapper: {
@@ -503,6 +506,7 @@ const MessagesList = ({ ticketId, isGroup }) => {
   };
 
   const checkMessageMedia = (message) => {
+    // console.log(message);
     if (message.mediaType === "location" && message.body.split('|').length >= 2) {
       let locationParts = message.body.split('|')
       let imageLocation = locationParts[0]
@@ -562,7 +566,7 @@ const MessagesList = ({ ticketId, isGroup }) => {
           controls
         />
       );
-    } else {
+      } else {
       return (
         <>
           <div className={classes.downloadMedia}>

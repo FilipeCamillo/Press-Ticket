@@ -429,8 +429,7 @@ const verifyQueue = async (
                 const chat = await msg.getChat();
                 await chat.sendStateTyping();
 
-                const greetingMessage = choosenQueue.greetingMessage;
-                if (greetingMessage) {
+                if (choosenQueue.greetingMessage){
                   const body = formatBody(`\u200e${choosenQueue.greetingMessage}`, ticket);
 
                   const sentMessage = await wbot.sendMessage(
@@ -495,14 +494,16 @@ const verifyQueue = async (
               const chat = await msg.getChat();
               await chat.sendStateTyping();
 
-              const body = formatBody(`\u200e${choosenQueue.greetingMessage}`, ticket);
+              if (choosenQueue.greetingMessage) {
+                const body = formatBody(`\u200e${choosenQueue.greetingMessage}`, ticket);
 
-              const sentMessage = await wbot.sendMessage(
-                `${contact.number}@c.us`,
-                body
-              );
+                const sentMessage = await wbot.sendMessage(
+                  `${contact.number}@c.us`,
+                  body
+                );
 
-              await verifyMessage(sentMessage, ticket, contact);
+                await verifyMessage(sentMessage, ticket, contact);
+              }
             }
           } else {
             //Envia mensagem com setores
@@ -523,7 +524,7 @@ const verifyQueue = async (
                 options += `*${index + 1}* - ${queue.name}\n`;
               }
             });
-
+            
             const body = formatBody(`\u200e${greetingMessage}\n\n${options}`, ticket);
 
             const debouncedSentMessage = debounce(
@@ -657,16 +658,16 @@ const verifyQueue = async (
 
                 const chat = await msg.getChat();
                 await chat.sendStateTyping();
-                const greetingMessage = choosenQueue.greetingMessage;
-                if (greetingMessage) {
-                  const body = formatBody(`\u200e${choosenQueue.greetingMessage}`, ticket);
+                
+                if (choosenQueue.greetingMessage) {
+                const body = formatBody(`\u200e${choosenQueue.greetingMessage}`, ticket);
 
-                  const sentMessage = await wbot.sendMessage(
-                    `${contact.number}@c.us`,
-                    body
-                  );
+                const sentMessage = await wbot.sendMessage(
+                  `${contact.number}@c.us`,
+                  body
+                );
 
-                  await verifyMessage(sentMessage, ticket, contact);
+                await verifyMessage(sentMessage, ticket, contact);
                 }
               }
             }
@@ -722,6 +723,7 @@ const verifyQueue = async (
               const chat = await msg.getChat();
               await chat.sendStateTyping();
 
+              if (choosenQueue.greetingMessage) {
               const body = formatBody(`\u200e${choosenQueue.greetingMessage}`, ticket);
 
               const sentMessage = await wbot.sendMessage(
@@ -730,6 +732,7 @@ const verifyQueue = async (
               );
 
               await verifyMessage(sentMessage, ticket, contact);
+              }
             }
           } else {
             //Envia mensagem com setores
@@ -2229,6 +2232,7 @@ const handleMessage = async (
       (unreadMessages === 0 &&
       whatsapp.farewellMessage &&
       formatBody(whatsapp.farewellMessage, ticket) === msg.body)) {
+        console.log("entrou aquii IF 2193")
       return;
     }
 
@@ -2246,7 +2250,7 @@ const handleMessage = async (
     if (msg.body === "#" && ticket.userId === null) {
       await ticket.update({
         queueOptionId: null,
-        chatbot: false,
+        chatbot: true,
         queueId: null,
       });
       await verifyQueue(wbot, msg, ticket, ticket.contact);

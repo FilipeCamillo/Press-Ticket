@@ -422,14 +422,16 @@ const verifyQueue = async (
                 const chat = await msg.getChat();
                 await chat.sendStateTyping();
 
-                const body = formatBody(`\u200e${choosenQueue.greetingMessage}`, ticket);
+                if (choosenQueue.greetingMessage){
+                  const body = formatBody(`\u200e${choosenQueue.greetingMessage}`, ticket);
 
-                const sentMessage = await wbot.sendMessage(
-                  `${contact.number}@c.us`,
-                  body
-                );
+                  const sentMessage = await wbot.sendMessage(
+                    `${contact.number}@c.us`,
+                    body
+                  );
 
-                await verifyMessage(sentMessage, ticket, contact);
+                  await verifyMessage(sentMessage, ticket, contact);
+                }
               }
             }
             await UpdateTicketService({
@@ -485,14 +487,16 @@ const verifyQueue = async (
               const chat = await msg.getChat();
               await chat.sendStateTyping();
 
-              const body = formatBody(`\u200e${choosenQueue.greetingMessage}`, ticket);
+              if (choosenQueue.greetingMessage) {
+                const body = formatBody(`\u200e${choosenQueue.greetingMessage}`, ticket);
 
-              const sentMessage = await wbot.sendMessage(
-                `${contact.number}@c.us`,
-                body
-              );
+                const sentMessage = await wbot.sendMessage(
+                  `${contact.number}@c.us`,
+                  body
+                );
 
-              await verifyMessage(sentMessage, ticket, contact);
+                await verifyMessage(sentMessage, ticket, contact);
+              }
             }
           } else {
             //Envia mensagem com setores
@@ -513,7 +517,7 @@ const verifyQueue = async (
                 options += `*${index + 1}* - ${queue.name}\n`;
               }
             });
-
+            
             const body = formatBody(`\u200e${greetingMessage}\n\n${options}`, ticket);
 
             const debouncedSentMessage = debounce(
@@ -644,7 +648,8 @@ const verifyQueue = async (
 
                 const chat = await msg.getChat();
                 await chat.sendStateTyping();
-
+                
+                if (choosenQueue.greetingMessage) {
                 const body = formatBody(`\u200e${choosenQueue.greetingMessage}`, ticket);
 
                 const sentMessage = await wbot.sendMessage(
@@ -653,6 +658,7 @@ const verifyQueue = async (
                 );
 
                 await verifyMessage(sentMessage, ticket, contact);
+                }
               }
             }
             await UpdateTicketService({
@@ -707,6 +713,7 @@ const verifyQueue = async (
               const chat = await msg.getChat();
               await chat.sendStateTyping();
 
+              if (choosenQueue.greetingMessage) {
               const body = formatBody(`\u200e${choosenQueue.greetingMessage}`, ticket);
 
               const sentMessage = await wbot.sendMessage(
@@ -715,6 +722,7 @@ const verifyQueue = async (
               );
 
               await verifyMessage(sentMessage, ticket, contact);
+              }
             }
           } else {
             //Envia mensagem com setores
@@ -2126,7 +2134,7 @@ const handleMessage = async (
      // messages sent automatically by wbot have a special character in front of it
       // if so, this message was already been stored in database;
       isBody = /\u200e/.test(msg.body[0]);
-     
+     console.log("TESTE U200E" + isBody)
       if ( isBody ) return;
       // media messages sent from me from cell phone, first comes with "hasMedia = false" and type = "image/ptt/etc"
       // in this case, return and let this message be handled by "media_uploaded" event, when it will have "hasMedia = true"
@@ -2182,6 +2190,7 @@ const handleMessage = async (
       (unreadMessages === 0 &&
       whatsapp.farewellMessage &&
       formatBody(whatsapp.farewellMessage, ticket) === msg.body)) {
+        console.log("entrou aquii IF 2193")
       return;
     }
 
@@ -2200,7 +2209,7 @@ const handleMessage = async (
     if (msg.body === "#" && ticket.userId === null) {
       await ticket.update({
         queueOptionId: null,
-        chatbot: false,
+        chatbot: true,
         queueId: null,
       });
       await verifyQueue(wbot, msg, ticket, ticket.contact);
@@ -2363,7 +2372,7 @@ const handleMessage = async (
 export const verifyRating = (ticketTraking: TicketTraking) => {
   if (
     ticketTraking &&
-    ticketTraking.finishedAt === null &&
+    ticketTraking.closedAt === null &&
     ticketTraking.userId !== null &&
     ticketTraking.ratingAt === null
   ) {

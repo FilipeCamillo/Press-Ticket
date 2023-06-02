@@ -60,15 +60,8 @@ const UpdateTicketService = async ({
         await CheckContactOpenTickets(ticket.contact.id, ticket.whatsappId);
       }
 
-      if (status !== undefined && ["closed"].indexOf(status) > -1 && !isFinished && isMsgGroup) {
-        await ticketTraking.update({
-          closedAt: moment().toDate(),
-          finishedAt: moment().toDate()
-        });
-      }
-
-      if (status !== undefined && ["closed"].indexOf(status) > -1 && !isFinished && !isMsgGroup) {
-        const { ratingMessage } = await ShowWhatsAppService(
+      if (status !== undefined && ["closed"].indexOf(status) > -1 && !isFinished) {
+        const { farewellMessage, ratingMessage } = await ShowWhatsAppService(
           ticket.whatsappId
         );
 
@@ -96,6 +89,31 @@ const UpdateTicketService = async ({
             return { ticket, oldStatus, oldUserId };
           }
         }
+        if (farewellMessage && !ticket.isGroup) {
+          if (ticketTraking.closedAt == null) {
+
+            await ticketTraking.update({
+              closedAt: moment().toDate(),
+              finishedAt: moment().toDate()
+            });
+            
+            const farewellMessageTxt = farewellMessage || "";
+            let bodyRatingMessage = `\u200e${farewellMessageTxt}\n`;
+
+            const msg = await SendWhatsAppMessage({ body: bodyRatingMessage, ticket });
+
+            await verifyMessage(msg, ticket, ticket.contact);
+
+            io.to("open")
+              .to(ticketId.toString())
+              .emit("ticket", {
+                action: "delete",
+                ticketId: ticket.id
+              });
+
+            return { ticket, oldStatus, oldUserId };
+          }
+        }
     };
 
    
@@ -106,7 +124,6 @@ const UpdateTicketService = async ({
       });
     }
 
-    if (isMsgGroup) 
     await ticket.update({
       status,
       queueId,

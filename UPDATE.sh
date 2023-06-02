@@ -90,7 +90,7 @@ echo " "
 sleep 2
 
 sudo rm -rf node_modules
-npm install
+npm install --force
 npm run build
 
 echo " "

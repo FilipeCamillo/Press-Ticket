@@ -4,7 +4,7 @@ import { join } from "path";
 import { promisify } from "util";
 import { writeFile } from "fs";
 import * as Sentry from "@sentry/node";
-import { head, isNull, isNil } from "lodash";
+import { head, isNull, isNil, isNaN, isNative } from "lodash";
 import moment from "moment";
 
 import {
@@ -2266,8 +2266,21 @@ const handleMessage = async (
     try {
       if (!msg.fromMe) {
         if (ticketTraking !== null && verifyRating(ticketTraking) && whatsapp.ratingMessage) {
+          let rate = +msg.body;
+          //testa se o usuário digitou uma avaliação numérica, se não enviou, envia novametne a mensagem de avaliação
+          if (!Number.isNaN(rate) && Number.isInteger(rate) && !isNull(rate)) {
           handleRating(msg, ticket, ticketTraking);
           return;
+          } 
+            else {
+              let bodyRatingMessage = `\u200e${whatsapp.ratingMessage}\n`;
+          
+              const msg = await SendWhatsAppMessage({ body: bodyRatingMessage, ticket });
+          
+              await verifyMessage(msg, ticket, ticket.contact);
+          
+              return;
+            }
         }
       }
     } catch (e) {
@@ -2430,22 +2443,25 @@ const handleRating = async (msg: WbotMessage, ticket: Ticket, ticketTraking: Tic
   let rate: number | null = null;
 
   const bodyMessage = msg.body;
+  const { farewellMessage, ratingMessage } = await ShowWhatsAppService(ticket.whatsappId);
+
 
   if (bodyMessage) {
     rate = +bodyMessage;
   }
 
   if (!Number.isNaN(rate) && Number.isInteger(rate) && !isNull(rate)) {
-    const { farewellMessage } = await ShowWhatsAppService(ticket.whatsappId);
 
     let finalRate = rate;
 
-    if (rate < 0) {
-      finalRate = 0;
-    }
-    if (rate > 10) {
-      finalRate = 10;
-    }
+      if (rate < 0) {
+        finalRate = 0;
+      } 
+      if (rate > 10) {
+        finalRate = 10;
+      } 
+    
+    
 
     await UserRating.create({
       ticketId: ticketTraking.ticketId,
@@ -2480,7 +2496,7 @@ const handleRating = async (msg: WbotMessage, ticket: Ticket, ticketTraking: Tic
       ticket,
       ticketId: ticket.id
     });
-  }
+  }   
 };
 
 const handleMsgAck = async (msg: WbotMessage, ack: MessageAck) => {

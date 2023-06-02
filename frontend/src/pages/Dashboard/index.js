@@ -725,7 +725,7 @@ const Dashboard = () => {
                     component="p"
                     className={classes.cardSubtitle}
                   >
-                    {counters.npsScore}
+                    {Number(counters.npsScore/100).toLocaleString(undefined,{style:'percent'})}
                   </Typography>
                   <Typography
                     variant="h6"

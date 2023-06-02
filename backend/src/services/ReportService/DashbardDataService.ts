@@ -129,21 +129,21 @@ export default async function DashboardDataService(
           and ur.rate < 7
       ) npsDetractorsPerc,
       (
-        select sum(nps.promoter) - sum(nps.detractor) from (
+        select sum(nps.promoter-nps.detractor)   from (
           (select 
-            (100*count(tt.id))/NULLIF((select count(id) total from traking where rated= 0),0) promoter
+           (100*count(tt.id))/NULLIF((select count(id) total from traking where rated= 1),0) promoter
        , 0 detractor
                     from traking tt
                     left join UserRatings ur on ur.ticketId = tt.ticketId
                 where tt.rated =true 
                 and ur.rate > 8
           union			
-          select 
-                      0,(100*count(tt.id))/NULLIF((select count(id) total from traking where rated= 0),0)
-                    from traking  tt
-                    left join UserRatings ur on ur.ticketId = tt.ticketId
-                where tt.rated =true 
-                and ur.rate < 7)) nps
+           select 
+          0,nullif((100*count(tt.ID))/NULLIF((select count(id) total from traking where rated= 1),0),0)
+        from traking  tt
+        left join UserRatings ur on ur.ticketId = tt.ticketId
+        where tt.rated = true 
+          and ur.rate < 7)) nps
         ) npsScore
   ),
   attedants as (

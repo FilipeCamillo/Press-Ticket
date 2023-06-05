@@ -9,6 +9,8 @@ interface QueueData {
   startWork?: string;
   endWork?: string;
   absenceMessage?: string;
+  urlN8N?: string;
+  dialogflowId?: number;
 }
 
 const CreateQueueService = async (queueData: QueueData): Promise<Queue> => {

@@ -287,30 +287,6 @@ const messages = {
           cancel: "Cancelar",
         },
       },
-      dialogflowModal: {
-        title: {
-          add: "Adicionar projeto",
-          edit: "Editar projeto",
-        },
-        form: {
-          type: "Tipo",
-          name: "Nome",
-          projectName: "Nome do Projeto",
-          language: "Linguagem",
-          jsonContent: "JsonContent",
-        },
-        buttons: {
-          okAdd: "Adicionar",
-          okEdit: "Salvar",
-          cancel: "Cancelar",
-          test: "Testar Bot",
-        },
-        messages: {
-          testSuccess: "Dialogflow testado com sucesso!",
-          addSuccess: "Dialogflow adicionado com sucesso.",
-          editSuccess: "Dialogflow editado com sucesso.",
-        },
-      },
       userModal: {
         title: {
           add: "Adicionar atendente",
@@ -461,8 +437,7 @@ const messages = {
           apidocs: "Documentação",
           apititle: "API",
           apikey: "API Key",
-          token: "Token",
-          integrations: "Integrações"
+          token: "Token"
         },
         appBar: {
           message: {
@@ -527,25 +502,6 @@ const messages = {
         confirmationModal: {
           deleteTitle: "Excluir",
           deleteMessage: "Você tem certeza? Essa ação não pode ser revertida! Os chamados desse setor continuarão existindo, mas não terão mais nenhuma setor atribuído.",
-        },
-      },
-      dialogflows: {
-        title: "Integrações",
-        table: {
-          type: "Tipo",
-          name: "Nome",
-          projectName: "Nome do Projeto",
-          language: "Linguagem",
-          lastUpdate: "Ultima atualização",
-          actions: "Ações",
-        },
-        buttons: {
-          add: "Adicionar Projeto",
-        },
-        confirmationModal: {
-          deleteTitle: "Excluir",
-          deleteMessage:
-            "Você tem certeza? Essa ação não pode ser revertida! e será removida das filas e conexões vinculadas",
         },
       },
       queueSelect: {

@@ -22,7 +22,6 @@ import {
   QuestionAnswerOutlined,
   MenuBook,
   SettingsOutlined,
-  DeveloperModeOutlined,
   SyncAlt,
   VpnKeyRounded,
   WhatsApp
@@ -154,11 +153,6 @@ const MainListItems = (props) => {
               to="/queues"
               primary={i18n.t("mainDrawer.listItems.queues")}
               icon={<AccountTreeOutlined />}
-            />
-            <ListItemLink
-              to="/integrations"
-              primary={i18n.t("mainDrawer.listItems.integrations")}
-              icon={<DeveloperModeOutlined />}
             />
             <ListItemLink
               to="/settings"

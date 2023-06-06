@@ -13,7 +13,6 @@ import Users from "../pages/Users";
 import Contacts from "../pages/Contacts/";
 import QuickAnswers from "../pages/QuickAnswers/";
 import Queues from "../pages/Queues/";
-import Integrations from "../pages/Integrations";
 import Api from "../pages/Api/";
 import ApiDocs from "../pages/ApiDocs/";
 import ApiKey from "../pages/ApiKey/";
@@ -38,7 +37,6 @@ const Routes = () => {
               <Route exact path="/contacts" component={Contacts} isPrivate />
               <Route exact path="/users" component={Users} isPrivate />
               <Route exact path="/quickAnswers" component={QuickAnswers} isPrivate />
-              <Route exact path="/Integrations" component={Integrations} isPrivate />
               <Route exact path="/Settings" component={Settings} isPrivate />
               <Route exact path="/api" component={Api} isPrivate />
               <Route exact path="/apidocs" component={ApiDocs} isPrivate />

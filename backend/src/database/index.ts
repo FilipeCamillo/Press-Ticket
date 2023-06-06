@@ -14,7 +14,6 @@ import QuickAnswer from "../models/QuickAnswer";
 import Tag from "../models/Tag";
 import ContactTag from "../models/ContactTag";
 import UserRating from "../models/UserRating";
-import Integrations from "../models/Integrations";
 
 // eslint-disable-next-line
 const dbConfig = require("../config/database");
@@ -37,8 +36,7 @@ const models = [
   Tag,
   ContactTag,
   UserRating,
-  TicketTraking,
-  Integrations
+  TicketTraking
 ];
 
 sequelize.addModels(models);

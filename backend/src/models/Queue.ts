@@ -6,8 +6,6 @@ import {
   Model,
   PrimaryKey,
   AutoIncrement,
-  ForeignKey,
-  BelongsTo,
   AllowNull,
   Unique,
   BelongsToMany
@@ -17,7 +15,6 @@ import UserQueue from "./UserQueue";
 
 import Whatsapp from "./Whatsapp";
 import WhatsappQueue from "./WhatsappQueue";
-import Integration from "./Integrations";
 
 @Table
 class Queue extends Model<Queue> {
@@ -47,13 +44,6 @@ class Queue extends Model<Queue> {
 
   @Column
   absenceMessage: string;
-
-  @ForeignKey(() => Integration)
-  @Column
-  integrationId: number;
-
-  @BelongsTo(() => Integration)
-  integration: Integration;
 
   @CreatedAt
   createdAt: Date;
